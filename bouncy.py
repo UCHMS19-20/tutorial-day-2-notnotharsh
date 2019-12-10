@@ -1,5 +1,6 @@
 import sys
 import pygame
+import random
 
 # start running pygame
 pygame.init()
@@ -9,16 +10,19 @@ width, height = 400, 300
 speed = [1, 1]
 # colors are tuples because values don't change
 black = (0, 0, 0)
-white = (255, 255, 255)
+white = [255, 255, 255]
 
 # Create a display. The size must be a tuple providing width and height
 screen = pygame.display.set_mode( (width, height) )
 
 # Load an image
-ball = pygame.image.load("img/ball.png")
+ball = pygame.image.load("img/google.png")
 ballrect = ball.get_rect()
 
 while True:
+    white[0] = random.randint(0, 255)
+    white[1] = random.randint(0, 255)
+    white[2] = random.randint(0, 255)
     # loop through every event in the event queue
     for event in pygame.event.get():
         # if the QUIT event happens, exit the program
@@ -32,7 +36,7 @@ while True:
         speed[1] *= -1
 
     # Fill the screen with white
-    screen.fill(white)
+    screen.fill(tuple(white))
     # Draw the ball with the size and location specified by ballrect
     screen.blit(ball, ballrect)
     # Update the display
